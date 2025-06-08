@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
     domains: ['res.cloudinary.com'], // allow Cloudinary-hosted assets
     formats: ['image/avif', 'image/webp'], // optional image formats
   },
+  //  eslint: {
+  //   ignoreDuringBuilds: true,
+  // },
 
 };
 
