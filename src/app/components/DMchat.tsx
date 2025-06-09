@@ -123,11 +123,10 @@ export default function DMChat({ currentUser }: Props) {
                     <button
                         key={user._id}
                         onClick={() => setSelectedUser(user)}
-                        className={`block w-full text-left px-4 py-3 hover:bg-gray-700 transition-colors ${
-                            selectedUser?._id === user._id
+                        className={`block w-full text-left px-4 py-3 hover:bg-gray-700 transition-colors ${selectedUser?._id === user._id
                                 ? "bg-blue-700 font-semibold text-white"
                                 : "bg-gray-800 text-gray-300"
-                        }`}
+                            }`}
                     >
                         {user.name || user.email}
                     </button>
@@ -154,19 +153,23 @@ export default function DMChat({ currentUser }: Props) {
                                     : null;
                                 const timeString = date
                                     ? date.toLocaleTimeString([], {
-                                          hour: "2-digit",
-                                          minute: "2-digit",
-                                      })
+                                        day: "2-digit",
+                                        month: "short",
+                                        year: "numeric",
+                                        hour: "2-digit",
+                                        minute: "2-digit",
+                                        hour12: true,
+
+                                    })
                                     : "";
 
                                 return (
                                     <div
                                         key={msg.id}
-                                        className={`max-w-xs px-4 py-2 rounded shadow-sm ${
-                                            msg.senderId === currentUser.uid
+                                        className={`max-w-xs px-4 py-2 rounded shadow-sm ${msg.senderId === currentUser.uid
                                                 ? "bg-blue-600 text-white self-end"
                                                 : "bg-gray-700 border border-gray-600 text-gray-300 self-start"
-                                        }`}
+                                            }`}
                                         style={{
                                             alignSelf:
                                                 msg.senderId === currentUser.uid

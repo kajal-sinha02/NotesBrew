@@ -23,6 +23,9 @@ export default function SignupPage() {
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [loadingOrgs, setLoadingOrgs] = useState(false);
   const [message, setMessage] = useState("");
+  const handleLoginRedirect = () => {
+    router.push("/login");
+  };
 
   // Fetch organizations when component mounts or when role changes to student
   useEffect(() => {
@@ -287,6 +290,34 @@ export default function SignupPage() {
                 )}
               </span>
             </button>
+
+{/* Login Button */}
+          <div className="mt-6">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-700/50"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-4 bg-black/40 text-gray-400 font-mono tracking-wider">
+                  ALREADY REGISTERED?
+                </span>
+              </div>
+            </div>
+            
+            <button
+              type="button"
+              onClick={handleLoginRedirect}
+              className="w-full mt-4 p-4 bg-transparent border-2 border-cyan-600/50 hover:border-cyan-500 hover:bg-cyan-600/10 text-cyan-400 hover:text-cyan-300 font-bold rounded-xl transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-cyan-400/50 active:scale-[0.98] font-mono tracking-wide"
+            >
+              <span className="flex items-center justify-center gap-2">
+                LOGIN TO ACCOUNT
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                </svg>
+              </span>
+            </button>
+          </div>
+
 
             {/* Message Display */}
             {message && (

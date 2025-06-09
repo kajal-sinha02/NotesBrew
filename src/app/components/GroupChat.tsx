@@ -35,7 +35,7 @@ export default function GroupChat({ user }: GroupChatProps) {
   const [loading, setLoading] = useState(true);
   const [orgName, setOrgName] = useState("");
 
-    useEffect(() => {
+  useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       const parsed = JSON.parse(storedUser);
@@ -125,9 +125,19 @@ export default function GroupChat({ user }: GroupChatProps) {
               <strong className="text-blue-600 dark:text-blue-400">{m.senderName}:</strong>{" "}
               <span className="text-gray-800 dark:text-gray-200">{m.content}</span>
               <div className="text-xs text-gray-500 dark:text-gray-400">
-                {m.createdAt?.toDate
-                  ? m.createdAt.toDate().toLocaleTimeString()
+                {m.createdAt?.seconds
+                  ? new Date(m.createdAt.seconds * 1000).toLocaleString(undefined, {
+                    weekday: "short", // Optional: 'Mon'
+                    day: "2-digit",
+                    month: "short",   // 'Jun'
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: true,
+                  })
                   : "Just now"}
+
               </div>
             </div>
           ))
