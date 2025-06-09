@@ -108,6 +108,7 @@ interface User {
 }
 
 type Tab = "all" | "search" | "create" | "summary" | "profile" | "add-organization" | "my-notes" | "org-notes"|"group-chat" | "dm-chat";
+const tabs: Tab[] = [/*...*/];
 
 export default function NotesDashboard() {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -198,7 +199,7 @@ export default function NotesDashboard() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetchOrgNotes(orgNotesFilters, orgNotesPagination.page, 10);
+      const res = await fetchOrgNotes(orgNotesPagination.page, 10);
       if (res.success) {
         setOrgNotes(res.notes || []);
         setOrgNotesPagination(p => ({ ...p, totalPages: res.totalPages || 1, total: res.total || 0 }));
@@ -910,7 +911,7 @@ export default function NotesDashboard() {
                   : "hover:bg-gray-800 text-gray-300 hover:text-white border border-transparent hover:border-gray-700"
               }`}
               onClick={() => {
-                setActiveTab(tab);
+                setActiveTab(tab as Tab);
                 setSelectedNotes([]); // Clear selected notes when switching tabs
                 if (tab === "create") {
                   setEditingNote(null);

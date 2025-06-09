@@ -9,7 +9,7 @@ function HomeHero() {
 
   useEffect(() => {
     setIsVisible(true);
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e : MouseEvent) => {
       setMousePosition({
         x: (e.clientX / window.innerWidth) * 100,
         y: (e.clientY / window.innerHeight) * 100,
